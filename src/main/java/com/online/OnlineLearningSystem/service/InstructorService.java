@@ -2,10 +2,13 @@ package com.online.OnlineLearningSystem.service;
 
 import com.online.OnlineLearningSystem.Model.Instructor;
 import com.online.OnlineLearningSystem.repository.InstructorRepository;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class InstructorService {
 
     private final InstructorRepository repo;

@@ -18,7 +18,7 @@ public class Admin {
 
 @Id
 @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     private String AdminName;
     private String password;//store hashed password
     private String email;
