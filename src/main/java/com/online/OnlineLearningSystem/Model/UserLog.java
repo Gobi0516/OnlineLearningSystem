@@ -20,13 +20,13 @@ public class UserLog {
     private int id;
 
     @Column(unique=true , nullable=false)
-    private String UserName;
+    private String userName;
 
     @Column(nullable = false)
-    private String Password;
+    private String password;
 
     @Column(unique = true, nullable = false)
-    private String Email;
+    private String email;
 
 //    @ManyToMany(fetch =FetchType.EAGER,cascade = CascadeType.PERSIST)
 //    @JoinTable(
@@ -36,24 +36,28 @@ public class UserLog {
 //    )
 //    private Set<Role> roles=<>new HashSet<>();
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "role_id", nullable = false)
-    private Set<Role> roles = new HashSet<>();
+    @ManyToMany
+    @JoinTable(
+            name = "userlog_roles", // name of the join table
+            joinColumns = @JoinColumn(name = "userlog_id"),      // FK to UserLog entity
+            inverseJoinColumns = @JoinColumn(name = "role_id")    // FK to Role entity
+    )
+    private Set<Role> roles;
 
     public void setId(int id) {
         this.id = id;
     }
 
     public void setUserName(String userName) {
-        UserName = userName;
+        this.userName = userName;
     }
 
     public void setPassword(String password) {
-        Password = password;
+        this.password = password;
     }
 
-    public void setEmail(String email) {
-        Email = email;
+    public void setemail(String email) {
+        this.email = email;
     }
 
     public void setRoles(Set<Role> roles) {
@@ -65,15 +69,15 @@ public class UserLog {
     }
 
     public String getUserName() {
-        return UserName;
+        return userName;
     }
 
     public String getPassword() {
-        return Password;
+        return password;
     }
 
-    public String getEmail() {
-        return Email;
+    public String getemail() {
+        return email;
     }
 
     public Set<Role> getRoles() {
